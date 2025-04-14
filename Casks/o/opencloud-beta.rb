@@ -1,4 +1,4 @@
-cask "opencloud" do
+cask "opencloud-beta" do
   arch arm: "arm64", intel: "x86_64"
 
   version "1.0.0-rc.1"
@@ -6,18 +6,15 @@ cask "opencloud" do
          intel: "95443b0ea69d40d5916965aa7e3155bd10d048598a942fd9e78c519c1e1cdb7d"
 
   url "https://github.com/opencloud-eu/desktop/releases/download/v#{version}/OpenCloud_Desktop-v#{version}-macos-clang-#{arch}.pkg"
-  name "OpenCloud Desktop"
-  desc "Desktop syncing client for OpenCloud"
+  name "OpenCloud Desktop Beta"
+  desc "Desktop syncing client for OpenCloud (Beta version)"
   homepage "https://github.com/opencloud-eu/desktop"
 
   livecheck do
     url "https://github.com/opencloud-eu/desktop/releases"
-    strategy :github_releases
-    regex(/^v?(\d+(?:\.\d+)+)$/i)  # Only matches stable versions without suffixes
+    strategy :github_latest
+    regex(/v?(\d+(?:\.\d+)+[-.](?:beta|rc|preview)\.?\d*)/i)
   end
-
-  # This is a pre-release version until the stable version is available
-  # Once stable version is available, this should be updated
 
   auto_updates true
   depends_on macos: ">= :monterey"
@@ -38,4 +35,9 @@ cask "opencloud" do
     "~/Library/Preferences/eu.opencloud.desktopclient.plist",
     "~/Library/Preferences/OpenCloud",
   ]
+
+  caveats <<~EOS
+    This is a pre-release version of OpenCloud Desktop.
+    It might include experimental features and may not be stable for daily use.
+  EOS
 end
