@@ -32,6 +32,49 @@ cask "opencloud"
 # cask "opencloud-beta"
 ```
 
+## Testing and Verification
+
+After installation, you can verify the app is working correctly:
+
+### Version Check
+
+```bash
+/Applications/OpenCloud.app/Contents/MacOS/opencloud --version
+```
+
+Sample output:
+```
+OpenCloud OpenCloud 1.0.0-rc.3
+https://github.com/opencloud-eu/desktop/commit/d3278c3401014fc9f0dc39766e3ab46c77c8c291
+Libraries Qt 6.8.1, OpenSSL 3.3.2 3 Sep 2024
+Using virtual files plugin: off
+OS: macos-24.4.0 (build arch: arm64, CPU arch: arm64)
+QPA: cocoa
+```
+
+### Debug Mode
+
+For detailed logging output:
+
+```bash
+# Verbose HTTP logging to console
+OPENCLOUD_HTTP_VERBOSE=1 /Applications/OpenCloud.app/Contents/MacOS/opencloud --logdebug --logfile -
+```
+
+### Help Information
+
+```bash
+/Applications/OpenCloud.app/Contents/MacOS/opencloud --help
+```
+
+### GUI Launch Test
+
+Simply open the app from Applications folder or run:
+
+```bash
+open -a OpenCloud
+```
+
 ## Troubleshooting and Debugging
 
 ### Verbose Installation
